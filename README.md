@@ -2,68 +2,74 @@
 
 Code your game AI
 
-## Getting Started
+# Botify-saas Javascript SDK
 
-Make sure you have the latest packages installed
+SDK to help you build and run queries on the Botify-Saas API.
 
-```
+
+## Developement
+
+### Requirements
+
+This project requires NodeJS and GruntJS to be installed
+
+- https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+- http://gruntjs.com/getting-started
+
+
+### Installation
+
+```sh
+git clone git@github.com:sem-io/botify-saas-js-sdk.git botify-js-sdk
+cd botify-js-sdk
 npm install
-bower install
+
 ```
 
-Note: If you don't have `npm` installed, make sure you have
-[node](http://nodejs.com) installed. If you don't have bower,
-`npm install -g bower`.
+### Workflow
 
-The above steps will download all the required software to
-build and run this app, such as [grunt](http://gruntjs.com),
-[requirejs](http://requirejs.org), and [jquery](http://jquery.com).
+This project includes a grunt configuration to compile it from the coffeescript files.
 
-## Running the server
+There is also a task to run a basic server, to run it launch:
 
-You can run your app using `grunt preview`. This will start a
-server on `localhost:8000`, meaning you can simply go to the
-url [localhost:8000/index.htm](http://localhost:8000/index.htm)
-while it's running.
+```sh
+grunt http-server:dev
+```
 
-If you'd like to run the compiled version, run
-`grunt preview-live`.
+The `watch` task will watch any change on the coffee files and recompile the files
+```sh
+grunt watch
+```
 
-## Building the application
+To build the final botify file, run:
+```sh
+grunt build
+```
 
-This application uses requirejs to load the various modules in
-the app folder. However, upon build, all of these files are
-concatenated and minified together to create a small, compressed
-javascript file.
+The test task automatically builds the project before running the tests
+```sh
+grunt test
+```
 
-Running `grunt` by itself will run through all of the steps of
-linting the javascript, building out dependencies and ultimately
-creating `/dist/require.js`.
+### Debugging
 
-## Working with the scaffolded app
+When debugging tests, you have two options:
 
-There's just enough to in place to get you going. Go ahead
-and make your changes to `index.htm`. You'll start your
-javascript work in `app/main.js` by requiring your first
-modules. Past that, well, the world is your oyster.
+- you could use the nodejs debugger http://nodejs.org/api/debugger.html` to
+debug the code in the console. Just add a breakpoint with `debugger;` in your
+code and start the test taks with:
 
-### Tests
+```sh
+node debug $(which grunt) test
+```
 
-Note: you need [phantomJS](http://phantomjs.org) to run the tests.
-The test directory uses `qunit`, which is run using phantomJS
-in the console, but can also be ran by launching the server
-`grunt preview` and going to `localhost:8000/test/index.html`.
+- or you could use the node-inspector package to debug it in the browser
+(https://www.npmjs.org/package/grunt-debug-task), It will open the chrome browser.
+To launch it run:
 
-Create tests in the `test/tests.js` file, where you can
-require your modules and test their functionality.
+```sh
+grunt debug test
+```
 
-## Deploying your application on a server
 
-Assuming you're already ran `npm install` and `bower install`,
-the only pieces required to run the application in its built
-state is running `grunt`.
-
-If you're using a webserver like apache or nginx, you'll want
-to create a redirect from `/components/requirejs/require.js` to
-`/dist/require.js`. (*Note: this is exactly what `grunt
-preview-live` does*)
+**Note:** `test` is the name of the grunt task, you could replace it with any other task

@@ -34,9 +34,6 @@ module.exports = function(grunt) {
         dest: 'dist/require.min.js'
       },
     },
-    qunit: {
-      files: ['test/**/*.html']
-    },
     coffee: {
       compileJoined: {
         files: {
@@ -92,14 +89,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Default task.
-  grunt.registerTask('default', ['qunit', 'clean', 'requirejs', 'concat', 'uglify']);
+  grunt.registerTask('default', ['clean', 'requirejs', 'concat', 'uglify']);
   grunt.registerTask('preview', ['connect:development']);
   grunt.registerTask('preview-live', ['default', 'connect:production']);
 
