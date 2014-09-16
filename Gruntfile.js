@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     coffee: {
       compileJoined: {
         files: {
-          'app/game_sdk.js': 'game_sdk/**/*.coffee',
+          'app/game_sdk.js': 'app/game_sdk/**/*.coffee',
         }
       },
     },
